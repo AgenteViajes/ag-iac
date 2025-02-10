@@ -23,7 +23,6 @@ jobs:
         shell: bash
 
     steps:
-
     - name: Set environment variables for Terraform
       run: |
         echo "ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}" >> $GITHUB_ENV
