@@ -7,7 +7,7 @@ variable "resource_group_name" {
 variable "location" {
   description = "Ubicación asociada al proyecto en Azure"
   type        = string
-  default     = "eastus"
+  default     = "East US"
 }
 
 variable "tags_ag" {
