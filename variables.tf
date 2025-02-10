@@ -44,6 +44,16 @@ variable "azure_tenant_id" {
   default = ""
 }
 
+variable "azure_client_id" {
+  type    = string
+  default = ""
+}
+
+variable "azure_client_secret" {
+  type    = string
+  default = ""
+}
+
 variable "storage_account_name" {
   type    = string
   default = "storageacc00ag"

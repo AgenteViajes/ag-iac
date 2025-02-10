@@ -36,6 +36,12 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
+      env:
+            TF_VAR_web_ui_repository_token: ${{ secrets.ACCESS_TOKEN }}
+            TF_VAR_azure_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+            TF_VAR_azure_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
+            TF_VAR_azure_client_id: ${{ secrets.AZURE_CLIENT_ID }}
+            TF_VAR_azure_client_secret: ${{ secrets.AZURE_CLIENT_SECRET }}
       run: terraform init
 
     - name: Terraform Format
