@@ -12,19 +12,19 @@ terraform {
   }
 }
 
-variable "client_id" {
+variable "azure_client_id" {
   type = string
 }
 
-variable "client_secret" {
+variable "azure_client_secret" {
   type = string
   sensitive = true
 }
 
-variable "subscription_id" {
+variable "azure_subscription_id" {
   type = string
 }
 
-variable "tenant_id" {
+variable "azure_tenant_id" {
   type = string
 }
