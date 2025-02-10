@@ -38,3 +38,8 @@ variable "azure_subscription_id" {
   type    = string
   default = ""
 }
+
+variable "azure_tenant_id" {
+  type    = string
+  default = ""
+}
