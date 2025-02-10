@@ -43,3 +43,13 @@ variable "azure_tenant_id" {
   type    = string
   default = ""
 }
+
+variable "storage_account_name" {
+  type    = string
+  default = "storageacc00ag"
+}
+
+variable "tf_storage_container_name" {
+  type    = string
+  default = "terraform-states"
+}
