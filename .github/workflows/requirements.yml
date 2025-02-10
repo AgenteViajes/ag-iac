@@ -24,6 +24,19 @@ jobs:
         shell: bash
 
     steps:
+
+    - name: Set environment variables for Terraform
+      run: |
+        echo "ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}" >> $GITHUB_ENV
+        echo "ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}" >> $GITHUB_ENV
+        echo "ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
+        echo "ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}" >> $GITHUB_ENV
+
+        # Variables TF_VAR_ para otros valores (si es necesario)
+        echo "TF_VAR_web_ui_repository_token=${{ secrets.ACCESS_TOKEN }}" >> $GITHUB_ENV
+        echo "TF_VAR_azure_subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
+        echo "TF_VAR_azure_tenant_id=${{ secrets.AZURE_TENANT_ID }}" >> $GITHUB_ENV
+        
     - name: Checkout
       uses: actions/checkout@v4
 
