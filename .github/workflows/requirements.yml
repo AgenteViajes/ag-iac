@@ -1,0 +1,55 @@
+name: '📦Requirements Terraform'
+
+on:
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: production
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Azure login
+      uses: azure/login@v2
+      with:
+        creds: >
+            {
+              "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+              "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+              "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+            }
+        #auth-type: IDENTITY
+        #tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        #client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        #subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        #enable-AzPSSession: true
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Format
+      run: terraform fmt -check
+
+    - name: Terraform Plan
+      env:
+        TF_VAR_web_ui_repository_token: ${{ secrets.ACCESS_TOKEN }}
+        TF_VAR_azure_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        TF_VAR_azure_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
+      run: terraform plan -input=false
