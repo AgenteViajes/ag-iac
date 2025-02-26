@@ -26,6 +26,10 @@ resource "azurerm_linux_web_app" "ag_web_app_hotels_mngr" {
       allowed_origins = [
         "*.azurestaticapps.net"
       ]
+      support_credentials = true
+    }
+    application_stack {
+      node_version = "22-lts"
     }
   }
 }
