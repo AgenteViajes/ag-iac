@@ -29,7 +29,7 @@ resource "azurerm_linux_web_app" "ag_web_app_hotels_mngr" {
       support_credentials = true
     }
     application_stack {
-      node_version = "22-lts"
+      node_version = "20-lts"
     }
   }
 }
