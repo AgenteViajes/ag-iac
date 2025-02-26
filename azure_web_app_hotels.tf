@@ -23,7 +23,7 @@ resource "azurerm_linux_web_app" "ag_web_app_hotels_mngr" {
   site_config {
     always_on = false
     cors {
-      allowed_origins =[
+      allowed_origins = [
         "*.azurestaticapps.net"
       ]
     }
