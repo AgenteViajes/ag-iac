@@ -20,5 +20,7 @@ resource "azurerm_linux_web_app" "ag_web_app_hotels_mngr" {
   location            = azurerm_service_plan.ag_web_app_service_plan.location
   service_plan_id     = azurerm_service_plan.ag_web_app_service_plan.id
 
-  site_config {}
+  site_config {
+    always_on = false
+  }
 }
