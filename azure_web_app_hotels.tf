@@ -1,13 +1,14 @@
 locals {
-  web_app_name_hotels = "ag-web-app-hotels-mngr"
-  plan_service_name   = "ag-pl-srv-backend"
-  os_type             = "Linux"
-  sku_name            = "F1"
+  web_app_name_hotels   = "ag-web-app-hotels-mngr"
+  plan_service_name     = "ag-pl-srv-backend"
+  plan_service_location = "West Central US"
+  os_type               = "Linux"
+  sku_name              = "F1"
 }
 
 resource "azurerm_service_plan" "ag_web_app_service_plan" {
   name                = local.plan_service_name
-  location            = azurerm_resource_group.ag_rg.location
+  location            = local.plan_service_location
   resource_group_name = azurerm_resource_group.ag_rg.name
   os_type             = local.os_type
   sku_name            = local.sku_name
